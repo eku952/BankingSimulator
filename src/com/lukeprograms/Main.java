@@ -20,7 +20,7 @@ public class Main {
         while(startup) {
             if (responceS.toLowerCase().equals("yes")) {
                 System.out.println("Please insert your username");
-                String tempUsername = scanner.nextLine();
+                String tempUsername = scanner.next();
                 System.out.println("Please insert your password");
                 int tempPassword = scanner.nextInt();
 
@@ -36,11 +36,12 @@ public class Main {
                     System.out.println("Incorrect Username or Password");
                 }
             }
-        }
-        if(responceS.toLowerCase().equals("no")) {
-            //System.out.println("test");
-            mainAccount = Account.createAccount();
-            login = true;
+
+            if(responceS.toLowerCase().equals("no")) {
+                //System.out.println("test");
+                mainAccount = Account.createAccount();
+                login = true;
+            }
         }
 
         while(login) {
@@ -54,6 +55,9 @@ public class Main {
                 if(withdraw <= mainAccount.getBalance()) {
                     mainAccount.withdraw(withdraw);
                     System.out.println("Withdraw successful, you withdrew " + withdraw + " dollars from your account balance is " + mainAccount.getBalance());
+                    //String overwrite = FileHandling.readFullFile();
+                    String newBalance = String.valueOf(withdraw - mainAccount.getBalance());
+                    FileHandling.overwriteFile(newBalance);
                 }
                 else {
                     System.out.println("You cannot withdraw more than what you have stored: " + mainAccount.getBalance());

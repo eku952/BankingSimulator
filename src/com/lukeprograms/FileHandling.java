@@ -35,6 +35,8 @@ public class FileHandling {
                 }
             }
 
+            bufferedReader.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,10 +56,25 @@ public class FileHandling {
                 stagedText.append(line);
             }
 
+            bufferedReader.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return stagedText.toString();
+    }
+
+    public static void overwriteFile(String change) {
+        StringBuilder mainOverwrite = new StringBuilder();
+        mainOverwrite.append(FileHandling.readFile(1));
+        mainOverwrite.append(System.lineSeparator());
+        mainOverwrite.append(FileHandling.readFile(2));
+        mainOverwrite.append(System.lineSeparator());
+        mainOverwrite.append(FileHandling.readFile(3));
+        mainOverwrite.append(System.lineSeparator());
+        mainOverwrite.append(change);
+        FileHandling.writeFile(mainOverwrite);
+        System.out.println("Writing to File Success.");
     }
 }
