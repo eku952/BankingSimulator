@@ -58,6 +58,13 @@ public class Account {
         return new Account(tempUsername, tempPassword, 1, tempBalance);
     }
 
+    public static Account pullAccountFromSave() {
+        String tempUsername = FileHandling.readFile(1);
+        int tempPassword = Integer.parseInt(FileHandling.readFile(2));
+        int tempBalance = Integer.parseInt(FileHandling.readFile(4));
+        return new Account(tempUsername, tempPassword, 2, tempBalance);
+    }
+
     public int withdraw(int withdrawAmount) {
         balance -= withdrawAmount;
         return balance;
