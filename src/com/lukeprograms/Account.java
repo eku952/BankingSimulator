@@ -58,11 +58,25 @@ public class Account {
         return new Account(tempUsername, tempPassword, 1, tempBalance);
     }
 
+    public int withdraw(int withdrawAmount) {
+        balance -= withdrawAmount;
+        return balance;
+    }
+
+    public int deposit(int depositAmount) {
+        balance += depositAmount;
+        return balance;
+    }
+
     public int getPassword() {
         return password;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 }
