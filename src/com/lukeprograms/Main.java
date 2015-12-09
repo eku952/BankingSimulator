@@ -54,10 +54,10 @@ public class Main {
 
                 if(withdraw <= mainAccount.getBalance()) {
                     mainAccount.withdraw(withdraw);
-                    System.out.println("Withdraw successful, you withdrew " + withdraw + " dollars from your account balance is " + mainAccount.getBalance());
                     //String overwrite = FileHandling.readFullFile();
-                    String newBalance = String.valueOf(withdraw - mainAccount.getBalance());
+                    String newBalance = String.valueOf(mainAccount.getBalance());
                     FileHandling.overwriteFile(newBalance);
+                    System.out.println("Withdraw successful, you withdrew " + withdraw + " dollars from your account balance is " + mainAccount.getBalance());
                 }
                 else {
                     System.out.println("You cannot withdraw more than what you have stored: " + mainAccount.getBalance());
@@ -69,6 +69,8 @@ public class Main {
                 int deposit = scanner.nextInt();
 
                 mainAccount.deposit(deposit);
+                String newBalance = String.valueOf(mainAccount.getBalance());
+                FileHandling.overwriteFile(newBalance);
                 System.out.println("Deposit successful, you deposited " + deposit + " dollars into your account, balance is " + mainAccount.getBalance());
             }
 
