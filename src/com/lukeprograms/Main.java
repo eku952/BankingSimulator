@@ -89,6 +89,11 @@ public class Main {
 
                 if(responceS.toLowerCase().equals("pay back")) {
                     mainAccount.withdraw((int) Bank.payLoan());
+                    mainAccount.overrideDebt();
+                }
+
+                if(responceS.toLowerCase().equals("check debt")) {
+                    System.out.println("Your debt is currently: " + mainAccount.getDebt() + " dollars.");
                 }
             }
 

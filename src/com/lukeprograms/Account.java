@@ -80,7 +80,7 @@ public class Account {
         return balance;
     }
 
-    public double overideDebt() {
+    public double overrideDebt() {
         debt = Double.parseDouble(FileHandling.readFile(5));
         return debt;
     }
