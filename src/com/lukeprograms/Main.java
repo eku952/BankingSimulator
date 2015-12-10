@@ -84,7 +84,11 @@ public class Main {
 
                 if(responceS.toLowerCase().equals("take loan")) {
                     mainAccount.deposit(Bank.takeLoan());
-                    System.out.println("You have successfuly taken out a loan, your new balance is " + mainAccount.getBalance() + " and your dept is " + mainAccount.getDebt());
+                    System.out.println("You have successfully taken out a loan, your new balance is " + mainAccount.getBalance() + " and your dept is " + mainAccount.getDebt());
+                }
+
+                if(responceS.toLowerCase().equals("pay back")) {
+                    mainAccount.withdraw((int) Bank.payLoan());
                 }
             }
 

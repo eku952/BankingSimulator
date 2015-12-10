@@ -40,6 +40,21 @@ public class Bank {
         System.out.println("Please insert the amount of money you wish to pay back. Your current debt is: " + FileHandling.readFile(5));
         double response = scanner.nextDouble();
         double currentDebt = Double.parseDouble(FileHandling.readFile(5));
-        
+        double newDebt = response - currentDebt;
+        StringBuilder previousInfo = new StringBuilder();
+
+        previousInfo.append(FileHandling.readFile(1));
+        previousInfo.append(System.lineSeparator());
+        previousInfo.append(FileHandling.readFile(2));
+        previousInfo.append(System.lineSeparator());
+        previousInfo.append(FileHandling.readFile(3));
+        previousInfo.append(System.lineSeparator());
+        previousInfo.append(newDebt);
+        previousInfo.append(System.lineSeparator());
+        previousInfo.append(newDebt);
+
+        FileHandling.writeFile(previousInfo);
+        System.out.println("You have removed " + response + " dollars, your current debt is:" + currentDebt);
+        return response;
     }
 }
