@@ -13,7 +13,7 @@ public class Bank {
 
     public static int takeLoan(){
         System.out.println("Hello, please insert how much money you would like to loan");
-        int response = scanner.nextInt();
+        int response = scanner.nextDouble();
         double currentDebt = Double.parseDouble(FileHandling.readFile(5));
         StringBuilder previousInfo = new StringBuilder();
         double interestRate = response * interest;
