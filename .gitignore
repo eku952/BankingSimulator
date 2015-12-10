@@ -8,7 +8,10 @@
 /out/
 
 #IntelliJ Shortcut
-IntelliJ IDEA Community Edition 15.0.2
+IntelliJ IDEA Community Edition 15.0.2.lnk
+
+#gitbash Shortcut
+Git Bash.lnk
 
 # Package Files #
 *.jar
