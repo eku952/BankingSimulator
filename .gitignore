@@ -7,6 +7,9 @@
 .idea/
 /out/
 
+#IntelliJ Shortcut
+IntelliJ IDEA Community Edition 15.0.2
+
 # Package Files #
 *.jar
 *.war
