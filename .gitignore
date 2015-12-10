@@ -4,8 +4,9 @@
 .mtj.tmp/
 
 #IntelliJ IDEA
-.idea/
+/.idea/
 /out/
+**/*.iml
 
 #IntelliJ Shortcut
 IntelliJ IDEA Community Edition 15.0.2.lnk
