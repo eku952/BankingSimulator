@@ -7,16 +7,18 @@ public class Account {
     private int password;
     private int accountNumber = 0;
     private int balance;
+    private double debt;
     private boolean loggedIn = false;
 
     StringBuilder accountBuffer = new StringBuilder();
     static Scanner scanner = new Scanner(System.in);
 
-    public Account(String username, int password, int accountNumber, int balance) {
+    public Account(String username, int password, int accountNumber, int balance, double debt) {
         this.username = username;
         this.password = password;
         this.accountNumber = accountNumber;
         this.balance = balance;
+        this.debt = debt;
         accountNumber++;
 
         accountBuffer.append(username);
@@ -26,6 +28,8 @@ public class Account {
         accountBuffer.append(accountNumber);
         accountBuffer.append(System.lineSeparator());
         accountBuffer.append(balance);
+        accountBuffer.append(System.lineSeparator());
+        accountBuffer.append(debt);
         FileHandling.writeFile(accountBuffer);
         System.out.println("Account Creation Complete!");
     }
@@ -55,14 +59,15 @@ public class Account {
         int tempPassword = scanner.nextInt();
         System.out.println("Please insert your account balance");
         int tempBalance = scanner.nextInt();
-        return new Account(tempUsername, tempPassword, 1, tempBalance);
+        return new Account(tempUsername, tempPassword, 1, tempBalance, 0);
     }
 
     public static Account pullAccountFromSave() {
         String tempUsername = FileHandling.readFile(1);
         int tempPassword = Integer.parseInt(FileHandling.readFile(2));
         int tempBalance = Integer.parseInt(FileHandling.readFile(4));
-        return new Account(tempUsername, tempPassword, 2, tempBalance);
+        double tempDebt = Double.parseDouble(FileHandling.readFile(5));
+        return new Account(tempUsername, tempPassword, 2, tempBalance, tempDebt);
     }
 
     public int withdraw(int withdrawAmount) {
@@ -75,6 +80,11 @@ public class Account {
         return balance;
     }
 
+    public double overideDebt() {
+        debt = Double.parseDouble(FileHandling.readFile(5));
+        return debt;
+    }
+
     public int getPassword() {
         return password;
     }
@@ -85,5 +95,9 @@ public class Account {
 
     public int getBalance() {
         return balance;
+    }
+
+    public double getDebt() {
+        return debt;
     }
 }
