@@ -45,7 +45,7 @@ public class Main {
         }
 
         while(login) {
-            System.out.println("Would you like to withdraw, deposit, check balance, or exit?");
+            System.out.println("Would you like to withdraw, deposit, check balance, loans, or exit?");
             responceS = scanner.nextLine();
 
             if(responceS.toLowerCase().equals("withdraw")) {
@@ -78,8 +78,39 @@ public class Main {
                 System.out.println("Your account balance is: " + mainAccount.getBalance());
             }
 
+            if(responceS.toLowerCase().equals("loans")) {
+                System.out.println("Would you like to take out a loan, pay back a previous loan, or check your debt?");
+                responceS = scanner.nextLine();
+
+                if(responceS.toLowerCase().equals("take loan")) {
+                    mainAccount.deposit(Bank.takeLoan());
+                    System.out.println("You have successfully taken out a loan, your new balance is " + mainAccount.getBalance() + " and your dept is " + mainAccount.getDebt());
+                }
+
+                if(responceS.toLowerCase().equals("pay back")) {
+                    mainAccount.withdraw((int) Bank.payLoan());
+                }
+            }
+
             if(responceS.toLowerCase().equals("exit")) {
                 System.out.println("Thank you for your visit at the bank!");
+                login = false;
+            }
+
+            if(responceS.toLowerCase().equals("reset")) {
+                StringBuilder reset = new StringBuilder();
+
+                reset.append("test");
+                reset.append(System.lineSeparator());
+                reset.append("123");
+                reset.append(System.lineSeparator());
+                reset.append("1");
+                reset.append(System.lineSeparator());
+                reset.append("50");
+                reset.append(System.lineSeparator());
+                reset.append("0.0");
+                FileHandling.writeFile(reset);
+                System.out.println("Reset Complete.");
                 login = false;
             }
         }
