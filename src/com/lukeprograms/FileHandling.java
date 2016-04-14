@@ -3,18 +3,13 @@ package com.lukeprograms;
 
 import java.io.*;
 
-public class FileHandling {
+public class FileHandling implements AutoCloseable {
     public static String fileName = "Save.sba";
 
     public static void writeFile(StringBuilder stagedText) {
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
             bufferedWriter.write(String.valueOf(stagedText));
-            bufferedWriter.close();
-
-            } catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -23,10 +18,7 @@ public class FileHandling {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         int counter = 0;
-        try {
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while((line = bufferedReader.readLine()) != null) {
                 counter++;
 
@@ -34,9 +26,6 @@ public class FileHandling {
                     stagedText.append(line);
                 }
             }
-
-            bufferedReader.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,10 +37,7 @@ public class FileHandling {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         //int counter = 0;
-        try {
-            FileReader fileReader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while((line = bufferedReader.readLine()) != null) {
                 stagedText.append(line);
             }
@@ -74,7 +60,14 @@ public class FileHandling {
         mainOverwrite.append(FileHandling.readFile(3));
         mainOverwrite.append(System.lineSeparator());
         mainOverwrite.append(change);
+        mainOverwrite.append(System.lineSeparator());
+        mainOverwrite.append(FileHandling.readFile(5));
         FileHandling.writeFile(mainOverwrite);
         System.out.println("Writing to File Success.");
+    }
+
+    @Override
+    public void close() throws Exception {
+        System.out.println("Closing File.");
     }
 }

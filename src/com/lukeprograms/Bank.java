@@ -49,11 +49,12 @@ public class Bank {
         previousInfo.append(System.lineSeparator());
         previousInfo.append(FileHandling.readFile(3));
         previousInfo.append(System.lineSeparator());
-        previousInfo.append(newDebt);
+        previousInfo.append(FileHandling.readFile(4));
         previousInfo.append(System.lineSeparator());
         previousInfo.append(newDebt);
 
         FileHandling.writeFile(previousInfo);
+        currentDebt = Double.parseDouble(FileHandling.readFile(5));
         System.out.println("You have removed " + response + " dollars, your current debt is:" + currentDebt);
         return response;
     }
