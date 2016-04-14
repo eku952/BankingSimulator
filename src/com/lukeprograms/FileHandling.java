@@ -60,6 +60,8 @@ public class FileHandling implements AutoCloseable {
         mainOverwrite.append(FileHandling.readFile(3));
         mainOverwrite.append(System.lineSeparator());
         mainOverwrite.append(change);
+        mainOverwrite.append(System.lineSeparator());
+        mainOverwrite.append(FileHandling.readFile(5));
         FileHandling.writeFile(mainOverwrite);
         System.out.println("Writing to File Success.");
     }

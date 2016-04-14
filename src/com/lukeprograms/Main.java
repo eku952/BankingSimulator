@@ -1,5 +1,6 @@
 package com.lukeprograms;
 
+import java.io.Console;
 import java.util.Scanner;
 
 public class Main {
@@ -39,14 +40,21 @@ public class Main {
 
             if(responceS.toLowerCase().equals("no")) {
                 //System.out.println("test");
-                mainAccount = Account.createAccount();
+                startup = false;
                 login = true;
+                mainAccount = Account.createAccount();
             }
         }
 
         while(login) {
             System.out.println("Would you like to withdraw, deposit, check balance, loans, or exit?");
             responceS = scanner.nextLine();
+
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             if(responceS.toLowerCase().equals("withdraw")) {
                 System.out.println("Please insert the amount you wish to withdraw.");
