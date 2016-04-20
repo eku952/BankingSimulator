@@ -4,7 +4,7 @@ package com.lukeprograms;
 import java.io.*;
 
 public class FileHandling implements AutoCloseable {
-    public static String fileName = "Save.sba";
+    public static String fileName = "Save.txt";
 
     public static void writeFile(StringBuilder stagedText) {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
