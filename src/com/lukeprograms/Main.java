@@ -8,6 +8,7 @@ public class Main {
     private static Account mainAccount;
     private static boolean login = false;
     private static boolean startup = true;
+    public static int currentSaveFile;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -15,21 +16,25 @@ public class Main {
             Account.createAccount();
         }
 */
+        System.out.println("What save file are you pulling from? If this is the first time you are starting this program, simply put '1' in as your answer");
+        currentSaveFile = scanner.nextInt();
+        FileHandling.setSaveFile(currentSaveFile);
+
         System.out.println("Welcome to the bank! Do you have an account?");
-        responceS = scanner.nextLine();
+        responceS = scanner.next();
 
         while(startup) {
             if (responceS.toLowerCase().equals("yes")) {
                 System.out.println("Please insert your username");
                 String tempUsername = scanner.next();
-                System.out.println("Please insert your password");
+                System.out.println("Please insert your password (numbers only)");
                 int tempPassword = scanner.nextInt();
 
                 String saveUsername = FileHandling.readFile(1);
                 String savePassword = FileHandling.readFile(2);
 
                 if (saveUsername.equals(tempUsername) && savePassword.equals(Integer.toString(tempPassword))) {
-                    mainAccount = Account.pullAccountFromSave();
+                    mainAccount = Account.pullAccountFromSave(currentSaveFile);
                     System.out.println("Login Successful");
                     startup = false;
                     login = true;

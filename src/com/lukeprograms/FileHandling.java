@@ -4,10 +4,31 @@ package com.lukeprograms;
 import java.io.*;
 
 public class FileHandling implements AutoCloseable {
-    public static String fileName = "Save.txt";
+    private static String fileName1 = "Save.txt";
+    private static String fileName2 = "Save2.txt";
+    private static String fileName3 = "Save3.txt";
+    private static String fileName4 = "Save4.txt";
+    public static String currentFile;
+
+    public static void setSaveFile(int saveFile) {
+        switch (saveFile) {
+            case 1: currentFile = fileName1;
+                break;
+            case 2: currentFile = fileName2;
+                break;
+            case 3: currentFile = fileName3;
+                break;
+            case 4: currentFile = fileName4;
+                break;
+            default: currentFile = fileName1;
+                System.out.println("Not a proper file number");
+                break;
+        }
+
+    }
 
     public static void writeFile(StringBuilder stagedText) {
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(currentFile))) {
             bufferedWriter.write(String.valueOf(stagedText));
         } catch (IOException e) {
             e.printStackTrace();
@@ -18,7 +39,7 @@ public class FileHandling implements AutoCloseable {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         int counter = 0;
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(currentFile))) {
             while((line = bufferedReader.readLine()) != null) {
                 counter++;
 
@@ -37,7 +58,7 @@ public class FileHandling implements AutoCloseable {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         //int counter = 0;
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(currentFile))) {
             while((line = bufferedReader.readLine()) != null) {
                 stagedText.append(line);
             }
