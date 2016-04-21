@@ -9,6 +9,7 @@ public class Account {
     private int balance;
     private double debt;
     private boolean loggedIn = false;
+    public int currentSaveFile;
 
     StringBuilder accountBuffer = new StringBuilder();
     static Scanner scanner = new Scanner(System.in);
@@ -19,6 +20,7 @@ public class Account {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.debt = debt;
+        //this.currentSaveFile = currentSaveFile;
         accountNumber++;
 
         accountBuffer.append(username);
@@ -30,6 +32,22 @@ public class Account {
         accountBuffer.append(balance);
         accountBuffer.append(System.lineSeparator());
         accountBuffer.append(debt);
+
+       /* int tempSafeFile;
+        switch (currentSafeFile) {
+            case 1: tempSafeFile = 1;
+                break;
+            case 2: currentSafeFile = 2;
+                break;
+            case 3: currentSafeFile = 3;
+                break;
+            case 4: currentSafeFile = 4;
+                break;
+            default: currentSafeFile = 1;
+                System.out.println("Invalid Save Number");
+                break;
+        }
+*/
         FileHandling.writeFile(accountBuffer);
         System.out.println("Account Creation Complete!");
     }
@@ -53,6 +71,8 @@ public class Account {
 
     public static Account createAccount() {
         //System.out.println("Welcome to the banking simulator, first you need to create an account!");
+        //System.out.println("What save file would you like to use? Please insert number 1, 2, 3, or 4.");
+        //int safeFile = scanner.nextInt();
         System.out.println("Please insert a username");
         String tempUsername = scanner.nextLine();
         System.out.println("Please insert a password");
@@ -62,7 +82,7 @@ public class Account {
         return new Account(tempUsername, tempPassword, 1, tempBalance, 0);
     }
 
-    public static Account pullAccountFromSave() {
+    public static Account pullAccountFromSave(int tempSafeFile) {
         String tempUsername = FileHandling.readFile(1);
         int tempPassword = Integer.parseInt(FileHandling.readFile(2));
         int tempBalance = Integer.parseInt(FileHandling.readFile(4));
