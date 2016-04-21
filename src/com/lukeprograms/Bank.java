@@ -32,6 +32,13 @@ public class Bank {
         previousInfo.append(newDebt);
 
         FileHandling.writeFile(previousInfo);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Ok, you have received a " + response + " dollar loan");
         return response;
     }
@@ -52,8 +59,14 @@ public class Bank {
         previousInfo.append(FileHandling.readFile(4));
         previousInfo.append(System.lineSeparator());
         previousInfo.append(newDebt);
-
         FileHandling.writeFile(previousInfo);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         currentDebt = Double.parseDouble(FileHandling.readFile(5));
         System.out.println("You have removed " + response + " dollars, your current debt is:" + currentDebt);
         return response;
