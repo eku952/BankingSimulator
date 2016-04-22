@@ -4,23 +4,23 @@ package com.lukeprograms;
 import java.io.*;
 
 public class FileHandling implements AutoCloseable {
-    private static String fileName1 = "Save.txt";
-    private static String fileName2 = "Save2.txt";
-    private static String fileName3 = "Save3.txt";
-    private static String fileName4 = "Save4.txt";
+    private static final String FILENAME1 = "Save.txt";
+    private static final String FILENAME2 = "Save2.txt";
+    private static final String FILENAME3 = "Save3.txt";
+    private static final String FILENAME4 = "Save4.txt";
     public static String currentFile;
 
     public static void setSaveFile(int saveFile) {
         switch (saveFile) {
-            case 1: currentFile = fileName1;
+            case 1: currentFile = FILENAME1;
                 break;
-            case 2: currentFile = fileName2;
+            case 2: currentFile = FILENAME2;
                 break;
-            case 3: currentFile = fileName3;
+            case 3: currentFile = FILENAME3;
                 break;
-            case 4: currentFile = fileName4;
+            case 4: currentFile = FILENAME4;
                 break;
-            default: currentFile = fileName1;
+            default: currentFile = FILENAME1;
                 System.out.println("Not a proper file number");
                 break;
         }
