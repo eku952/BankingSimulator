@@ -16,9 +16,9 @@ public class Main {
             Account.createAccount();
         }
 */
-        System.out.println("What save file are you pulling from? If this is the first time you are starting this program, simply put '1' in as your answer");
-        currentSaveFile = scanner.nextInt();
-        FileHandling.setSaveFile(currentSaveFile);
+        //System.out.println("What save file are you pulling from? If this is the first time you are starting this program, simply put '1' in as your answer");
+        //currentSaveFile = scanner.nextInt();
+        //FileHandling.setSaveFile(currentSaveFile);
 
         System.out.println("Welcome to the bank! Do you have an account?");
         responceS = scanner.next();

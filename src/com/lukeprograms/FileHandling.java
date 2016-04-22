@@ -4,13 +4,11 @@ package com.lukeprograms;
 import java.io.*;
 
 public class FileHandling implements AutoCloseable {
-    private static String fileName1 = "Save.txt";
-    private static String fileName2 = "Save2.txt";
-    private static String fileName3 = "Save3.txt";
-    private static String fileName4 = "Save4.txt";
+    private static String fileName = "Save.txt";
+
     public static String currentFile;
 
-    public static void setSaveFile(int saveFile) {
+    /*public static void setSaveFile(int saveFile) {
         switch (saveFile) {
             case 1: currentFile = fileName1;
                 break;
@@ -25,10 +23,10 @@ public class FileHandling implements AutoCloseable {
                 break;
         }
 
-    }
+    }*/
 
     public static void writeFile(StringBuilder stagedText) {
-        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(currentFile))) {
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
             bufferedWriter.write(String.valueOf(stagedText));
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,7 +37,7 @@ public class FileHandling implements AutoCloseable {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         int counter = 0;
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(currentFile))) {
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while((line = bufferedReader.readLine()) != null) {
                 counter++;
 
