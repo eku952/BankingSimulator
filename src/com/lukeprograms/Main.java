@@ -1,5 +1,7 @@
 package com.lukeprograms;
 
+import org.json.simple.parser.ParseException;
+
 import java.io.Console;
 import java.util.Scanner;
 
@@ -113,6 +115,22 @@ public class Main {
             if(responceS.toLowerCase().equals("exit")) {
                 System.out.println("Thank you for your visit at the bank!");
                 login = false;
+            }
+
+            if(responceS.toUpperCase().equals("JSON")) {
+                System.out.println("JSON Confirmed.");
+                responceS = scanner.nextLine();
+
+                switch(responceS) {
+                    case("read"):
+                        try {
+                            FileHandling.readAsJSON();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Read Confirmed");
+                        break;
+                }
             }
 
             if(responceS.toLowerCase().equals("reset")) {

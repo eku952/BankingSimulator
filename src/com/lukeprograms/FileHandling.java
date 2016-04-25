@@ -1,12 +1,17 @@
 package com.lukeprograms;
 
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FileHandling implements AutoCloseable {
-    private static String fileName = "Save.txt";
+    private static final String fileName = "Save.txt";
+    private static final String JSONFile = "JSONSave.json";
     Map<String, Account> account = new HashMap<>();
 
     //public static String currentFile;
@@ -27,7 +32,7 @@ public class FileHandling implements AutoCloseable {
         }
 
     }*/
-    
+
 
     public static void writeFile(StringBuilder stagedText) {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
@@ -60,7 +65,7 @@ public class FileHandling implements AutoCloseable {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         //int counter = 0;
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(JSONFile))) {
             while((line = bufferedReader.readLine()) != null) {
                 stagedText.append(line);
             }
@@ -87,6 +92,16 @@ public class FileHandling implements AutoCloseable {
         mainOverwrite.append(FileHandling.readFile(5));
         FileHandling.writeFile(mainOverwrite);
         System.out.println("Writing to File Success.");
+    }
+
+    public static JSONObject readAsJSON() throws ParseException {
+        String transfer = FileHandling.readFullFile();
+
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(transfer);
+        JSONObject accountJSON = (JSONObject)obj;
+
+        return accountJSON;
     }
 
     @Override

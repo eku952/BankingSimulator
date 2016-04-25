@@ -1,0 +1,13 @@
+{
+  "_comment": "These 5-digit strings below represent the account id or username.",
+  "01654": {
+    "holder": "NAME",
+    "pin": "678345",
+    "balance": 325.67
+  },
+  "56789": {
+    "holder": "NAME",
+    "pin": "678345",
+    "balance": 4002.45
+  }
+}
