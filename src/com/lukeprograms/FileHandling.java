@@ -2,11 +2,14 @@ package com.lukeprograms;
 
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FileHandling implements AutoCloseable {
     private static String fileName = "Save.txt";
+    Map<String, Account> account = new HashMap<>();
 
-    public static String currentFile;
+    //public static String currentFile;
 
     /*public static void setSaveFile(int saveFile) {
         switch (saveFile) {
@@ -24,6 +27,7 @@ public class FileHandling implements AutoCloseable {
         }
 
     }*/
+    
 
     public static void writeFile(StringBuilder stagedText) {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
@@ -56,7 +60,7 @@ public class FileHandling implements AutoCloseable {
         StringBuilder stagedText = new StringBuilder();
         String line = null;
         //int counter = 0;
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(currentFile))) {
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while((line = bufferedReader.readLine()) != null) {
                 stagedText.append(line);
             }

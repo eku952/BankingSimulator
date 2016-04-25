@@ -1,8 +1,6 @@
 package com.lukeprograms;
 
 
-
-import java.util.DoubleSummaryStatistics;
 import java.util.Scanner;
 
 public class Bank {
