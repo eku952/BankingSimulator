@@ -1,5 +1,6 @@
 package com.lukeprograms;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.Console;
@@ -122,13 +123,20 @@ public class Main {
                 responceS = scanner.nextLine();
 
                 switch(responceS) {
-                    case("read"):
+                    case ("read"):
+                        JSONObject json = null;
                         try {
-                            FileHandling.readAsJSON();
+                            json = FileHandling.readAsJSON();
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-                        System.out.println("Read Confirmed");
+
+                        System.out.println(json);
+                        JSONObject firstAccount = (JSONObject) json.get("01654");
+
+                        System.out.println(firstAccount);
+                        System.out.println(firstAccount.get("balance"));
+                        System.out.println(firstAccount.get("pin"));
                         break;
                 }
             }
