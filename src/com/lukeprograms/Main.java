@@ -1,6 +1,7 @@
 package com.lukeprograms;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.Console;
@@ -119,24 +120,40 @@ public class Main {
             }
 
             if(responceS.toUpperCase().equals("JSON")) {
+                JSONObject json = null;
+                try {
+                    json = FileHandling.readAsJSON();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                JSONObject firstAccount = (JSONObject) json.get("01654");
+                JSONParser parser = new JSONParser();
+
                 System.out.println("JSON Confirmed.");
                 responceS = scanner.nextLine();
 
                 switch(responceS) {
-                    case ("read"):
-                        JSONObject json = null;
-                        try {
-                            json = FileHandling.readAsJSON();
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        System.out.println(json);
-                        JSONObject firstAccount = (JSONObject) json.get("01654");
+                    case "read":
 
                         System.out.println(firstAccount);
                         System.out.println(firstAccount.get("balance"));
                         System.out.println(firstAccount.get("pin"));
+                        break;
+
+                    case "deposit":
+                        System.out.println("Please insert the amount you wish to deposit");
+                        double deposit = scanner.nextDouble();
+
+                        double currentBalance = (Double)firstAccount.get("balance");
+                        double newBalance = currentBalance + deposit;
+                        System.out.println(newBalance);
+
+                        firstAccount.put("balance", newBalance);
+
+                        //currently not working--->
+                        //FileHandling.writeAsJSON(newBalance, "balance");
+
                         break;
                 }
             }

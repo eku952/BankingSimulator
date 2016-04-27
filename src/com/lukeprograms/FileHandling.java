@@ -104,6 +104,36 @@ public class FileHandling implements AutoCloseable {
         return accountJSON;
     }
 
+    public static void writeAsJSON(JSONObject itemToWrite, String whereToWrite) {
+        JSONObject jsonWrite = null;
+
+        try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(JSONFile))) {
+
+            jsonWrite = FileHandling.readAsJSON();
+            JSONObject writeJSON = (JSONObject) jsonWrite.get("01654");
+            System.out.println(jsonWrite.get("01654").getClass().getName());
+
+            switch(whereToWrite) {
+                case "holder": writeJSON.put("holder", itemToWrite);
+                    bufferedWriter.write(writeJSON.toJSONString());
+                    break;
+                case "balance": writeJSON.put("balance", itemToWrite);
+                    bufferedWriter.write(writeJSON.toJSONString());
+                    break;
+            }
+
+            System.out.println("Writing complete");
+            bufferedWriter.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void close() throws Exception {
         System.out.println("Closing File.");
