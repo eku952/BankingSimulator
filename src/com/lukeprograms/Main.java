@@ -150,10 +150,9 @@ public class Main {
                         System.out.println(newBalance);
 
                         firstAccount.put("balance", newBalance);
+                        json.put("01654", firstAccount);
 
-                        //currently not working--->
-                        //FileHandling.writeAsJSON(newBalance, "balance");
-
+                        FileHandling.writeAsJSON(json.toJSONString());
                         break;
                 }
             }

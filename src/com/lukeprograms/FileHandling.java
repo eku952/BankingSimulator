@@ -104,16 +104,13 @@ public class FileHandling implements AutoCloseable {
         return accountJSON;
     }
 
-    public static void writeAsJSON(JSONObject itemToWrite, String whereToWrite) {
-        JSONObject jsonWrite = null;
+    public static void writeAsJSON(String itemToWrite) {
+        //JSONObject jsonWrite = null;
 
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(JSONFile))) {
+            bufferedWriter.write(itemToWrite);
 
-            jsonWrite = FileHandling.readAsJSON();
-            JSONObject writeJSON = (JSONObject) jsonWrite.get("01654");
-            System.out.println(jsonWrite.get("01654").getClass().getName());
-
-            switch(whereToWrite) {
+            /*switch(whereToWrite) {
                 case "holder": writeJSON.put("holder", itemToWrite);
                     bufferedWriter.write(writeJSON.toJSONString());
                     break;
@@ -121,15 +118,13 @@ public class FileHandling implements AutoCloseable {
                     bufferedWriter.write(writeJSON.toJSONString());
                     break;
             }
-
+*/
             System.out.println("Writing complete");
             bufferedWriter.close();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
