@@ -5,6 +5,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.Console;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +18,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Map<String, Account> account = new HashMap<>();
+
         /*if(firstInit) {
             Account.createAccount();
         }
@@ -134,11 +138,11 @@ public class Main {
                 responceS = scanner.nextLine();
 
                 switch(responceS) {
-                    case "read":
+                    case "check balance":
 
-                        System.out.println(firstAccount);
-                        System.out.println(firstAccount.get("balance"));
-                        System.out.println(firstAccount.get("pin"));
+                        //System.out.println(firstAccount);
+                        System.out.println("PIN:" + firstAccount.get("pin"));
+                        System.out.println("Balance:" + firstAccount.get("balance"));
                         break;
 
                     case "deposit":
@@ -147,13 +151,27 @@ public class Main {
 
                         double currentBalance = (Double)firstAccount.get("balance");
                         double newBalance = currentBalance + deposit;
-                        System.out.println(newBalance);
 
                         firstAccount.put("balance", newBalance);
                         json.put("01654", firstAccount);
 
                         FileHandling.writeAsJSON(json.toJSONString());
                         break;
+
+                    case "withdraw":
+                        System.out.println("Please insert the amount you wish to withdraw");
+                        double withdraw = scanner.nextDouble();
+                        double currentBalance2 = (Double)firstAccount.get("balance");
+
+                        if(withdraw <= currentBalance2) {
+                            double newBalance2 = currentBalance2 - withdraw;
+
+                            firstAccount.put("balance", newBalance2);
+                            json.put("01654", firstAccount);
+
+                            FileHandling.writeAsJSON(json.toJSONString());
+                            break;
+                        }
                 }
             }
 

@@ -12,7 +12,6 @@ import java.util.Map;
 public class FileHandling implements AutoCloseable {
     private static final String fileName = "Save.txt";
     private static final String JSONFile = "JSONSave.json";
-    Map<String, Account> account = new HashMap<>();
 
     //public static String currentFile;
 
@@ -110,15 +109,6 @@ public class FileHandling implements AutoCloseable {
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(JSONFile))) {
             bufferedWriter.write(itemToWrite);
 
-            /*switch(whereToWrite) {
-                case "holder": writeJSON.put("holder", itemToWrite);
-                    bufferedWriter.write(writeJSON.toJSONString());
-                    break;
-                case "balance": writeJSON.put("balance", itemToWrite);
-                    bufferedWriter.write(writeJSON.toJSONString());
-                    break;
-            }
-*/
             System.out.println("Writing complete");
             bufferedWriter.close();
 
