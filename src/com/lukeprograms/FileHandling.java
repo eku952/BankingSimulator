@@ -21,7 +21,7 @@ public class FileHandling implements AutoCloseable {
             case 4: currentFile = FILENAME4;
                 break;
             default: currentFile = FILENAME1;
-                System.out.println("Not a proper file number");
+                System.out.println("Not a proper file number, defaulting to save 1");
                 break;
         }
 

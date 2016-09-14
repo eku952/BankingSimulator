@@ -115,7 +115,7 @@ public class Main {
                 login = false;
             }
 
-            if(responceS.toLowerCase().equals("reset")) {
+            /*if(responceS.toLowerCase().equals("reset")) {
                 StringBuilder reset = new StringBuilder();
 
                 reset.append("test");
@@ -130,7 +130,7 @@ public class Main {
                 FileHandling.writeFile(reset);
                 System.out.println("Reset Complete.");
                 login = false;
-            }
+            } */
         }
     }
 }
